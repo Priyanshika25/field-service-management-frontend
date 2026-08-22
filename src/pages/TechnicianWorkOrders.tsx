@@ -30,7 +30,11 @@ function TechnicianWorkOrders() {
 
   const [error, setError] = useState("");
 
-  const technicianId = 15;
+  const technicianId = Number(localStorage.getItem("userId"));
+
+  if (!technicianId) {
+    console.error("Technician userId not found in localStorage");
+  }
 
   const loadWorkOrders = async () => {
     try {
