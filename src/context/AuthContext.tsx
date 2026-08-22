@@ -4,7 +4,8 @@ interface AuthContextType {
   token: string | null;
   email: string | null;
   role: string | null;
-  login: (token: string, email: string, role: string) => void;
+  userId: number | null;
+  login: (token: string, email: string, role: string, userId: number) => void;
   logout: () => void;
 }
 
@@ -25,24 +26,38 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const [role, setRole] = useState<string | null>(localStorage.getItem("role"));
 
-  const login = (newToken: string, newEmail: string, newRole: string) => {
+  const [userId, setUserId] = useState<number | null>(() => {
+    const id = localStorage.getItem("userId");
+    return id ? Number(id) : null;
+  });
+
+  const login = (
+    newToken: string,
+    newEmail: string,
+    newRole: string,
+    newUserId: number,
+  ) => {
     localStorage.setItem("token", newToken);
     localStorage.setItem("email", newEmail);
     localStorage.setItem("role", newRole);
+    localStorage.setItem("userId", String(newUserId));
 
     setToken(newToken);
     setEmail(newEmail);
     setRole(newRole);
+    setUserId(newUserId);
   };
 
   const logout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("email");
     localStorage.removeItem("role");
+    localStorage.removeItem("userId");
 
     setToken(null);
     setEmail(null);
     setRole(null);
+    setUserId(null);
   };
 
   return (
@@ -51,6 +66,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         token,
         email,
         role,
+        userId,
         login,
         logout,
       }}

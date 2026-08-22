@@ -19,7 +19,8 @@ function CustomerHistory() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  const customerId = 19;
+  const customerId = Number(localStorage.getItem("userId"));
+  console.log("CUSTOMER ID:", customerId);
 
   useEffect(() => {
     const loadHistory = async () => {

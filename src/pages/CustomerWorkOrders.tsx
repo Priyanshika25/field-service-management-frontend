@@ -23,8 +23,8 @@ function CustomerWorkOrders() {
 
   // Temporary fixed customer ID for testing.
   // Later we can get this from the logged-in user/JWT.
-  const customerId = 19;
-
+  const customerId = Number(localStorage.getItem("userId"));
+  console.log("CUSTOMER ID:", customerId);
   useEffect(() => {
     const loadWorkOrders = async () => {
       try {

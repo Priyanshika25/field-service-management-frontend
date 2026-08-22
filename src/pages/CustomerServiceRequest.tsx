@@ -13,10 +13,13 @@ function CustomerServiceRequest() {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
-  const customerId = 19;
-
+  const customerId = localStorage.getItem("userId");
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (!customerId) {
+      setError("Customer ID not found. Please login again.");
+      return;
+    }
 
     setLoading(true);
     setError("");

@@ -22,7 +22,7 @@ const Login = () => {
     try {
       const response = await loginUser(email, password);
 
-      login(response.token, response.email, response.role);
+      (login(response.token, response.email, response.role, response.userId));
 
       if (response.role === "MANAGER") {
         navigate("/dashboard");

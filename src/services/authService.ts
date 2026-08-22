@@ -9,6 +9,7 @@ export interface LoginResponse {
   token: string;
   email: string;
   role: string;
+  userId: number;
 }
 
 export const loginUser = async (

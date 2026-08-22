@@ -9,6 +9,7 @@ function Layout() {
     localStorage.removeItem("token");
     localStorage.removeItem("role");
     localStorage.removeItem("email");
+    localStorage.removeItem("userId");
 
     navigate("/login");
   };
@@ -34,7 +35,6 @@ function Layout() {
           )}
 
           {/* DISPATCHER */}
-
           {role === "DISPATCHER" && (
             <Link className="sidebar-link" to="/dispatcher/work-orders">
               📋 Work Orders
